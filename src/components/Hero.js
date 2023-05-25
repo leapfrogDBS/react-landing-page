@@ -65,11 +65,15 @@ export default function Hero() {
                 <p className="text-lg leading-relaxed mb-8">
                     {pageData.hero_subtitle}
                 </p>
-                <div>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
-                    Shedule a meeting
-                    </button>
-                </div>
+                
+                {pageData.hero_button_link && pageData.hero_button_text && (
+                    <a href={pageData.hero_button_link.url}>
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
+                            {pageData.hero_button_text}
+                        </button>
+                    </a>
+                )}
+
             </div>
         </div>
     </section>
