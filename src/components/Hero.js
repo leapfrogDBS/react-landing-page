@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect, useRef } from 'react';
-import wordpressLogo from '../images/wordpress.png'; 
-import figmaLogo from '../images/figma.png'; 
+import React, { useEffect, useRef, useContext } from 'react';
 import Typewriter from 'typewriter-effect';
 import * as THREE from 'three';
 import WAVES from 'vanta/dist/vanta.waves.min';
+import {PageDataContext} from "../PageDataContext";
 
 export default function Hero() {
+
+    const pageData = useContext(PageDataContext);
+
     const myRef = useRef(null);
     let vantaEffect;
   
@@ -36,20 +38,20 @@ export default function Hero() {
                 <img 
                     className="h-32 animate-float-reverse" 
                     alt="Figma" 
-                    src={figmaLogo} 
+                    src={pageData.hero_figma_image.url} 
                 />
-            <img
-                className="h-32 animate-float"
-                alt="WordPress"
-                src={wordpressLogo}
-            /> 
+                <img
+                    className="h-32 animate-float"
+                    alt="WordPress"
+                    src={pageData.hero_wordpress_image.url}
+                /> 
             </div>
 
             <div className="text-center mt-6">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-2"> 
                 <Typewriter
                     options={{
-                        strings: ['Responsive', 'Fast Loading', 'SEO Optimised'],
+                        strings: pageData.hero_animated_text.map(item => item.hero_animated_text_item),
                         autoStart: true,
                         loop: true,
                         delay: 50,
@@ -57,11 +59,11 @@ export default function Hero() {
                 />
                 </h2>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 relative">
-                    Figma to WordPress
+                    {pageData.hero_title}
                     <span className="underline-effect"></span>
                 </h1>
                 <p className="text-lg leading-relaxed mb-8">
-                Let us bring your designs to life with our expertise in creating custom WordPress themes tailored to your unique requirements.
+                    {pageData.hero_subtitle}
                 </p>
                 <div>
                     <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">

@@ -8,12 +8,19 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+import React from 'react';
+
+import { PageDataContextProvider } from './PageDataContext'; 
+
 function App() {
+  
   return (
     <div className="App">
       
         <Header />
-        <Hero />
+        <PageDataContextProvider >
+          <Hero />
+        </PageDataContextProvider>
         <About />
         <Services />
         <Portfolio />
